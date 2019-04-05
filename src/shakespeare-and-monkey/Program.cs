@@ -6,7 +6,8 @@ namespace ShakespeareAndMonkey
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("This program tries to find the phrase: \"kia panahi rad\" using genetic algorithms.");
+
         }
     }
 }
