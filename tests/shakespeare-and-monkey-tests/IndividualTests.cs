@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace ShakespeareAndMonkey.Tests
@@ -8,11 +9,28 @@ namespace ShakespeareAndMonkey.Tests
         private const int NumberOfGenomes = 20;
         private static readonly Random Random = new Random();
 
+        [SuppressMessage("ReSharper", "StringLiteralTypo")]
+        [Theory]
+        [InlineData("abcdef", "abcdef", 1d)]
+        [InlineData("abcdef", "xxxxxx", 0d)]
+        [InlineData("abcdef", "abcxxx", 0.5d)]
+        [InlineData("abcdef", "xxxdef", 0.5d)]
+        [InlineData("abcdef", "axcxex", 0.5d)]
+        [InlineData("abc", "abcxxx", 1d)]
+        public void Should_Return_Correct_Fitness(string target, string genes, double fitness)
+        {
+            var sut = new Individual(genes.ToCharArray(), Random);
+            sut.CalculateFitness(target.ToCharArray());
+
+            Assert.Equal(fitness, sut.Fitness);
+        }
+
         [Fact]
         public void Should_Calculate_Fitness()
         {
-            var targetString = "sample text";
-            var sut = new Individual(NumberOfGenomes, Random);
+            const string targetString = "sample text";
+
+            var sut = new Individual("sample other".ToCharArray(), Random);
 
             var oldFitness = sut.Fitness;
 
@@ -48,28 +66,12 @@ namespace ShakespeareAndMonkey.Tests
         {
             const string s = "kia.panahirad@gmail.com";
 
-            var sut = new Individual(s.ToCharArray());
+            var sut = new Individual(s.ToCharArray(), Random);
             sut.CalculateFitness(s.ToCharArray());
 
             Assert.Equal(1d, sut.Fitness);
 
             Assert.Equal($"fitness: 100.00% - phrase: {s}", sut.ToString());
-
-        }
-
-        [Theory]
-        [InlineData("abcdef", "abcdef", 1d)]
-        [InlineData("abcdef", "xxxxxx", 0d)]
-        [InlineData("abcdef", "abcxxx", 0.5d)]
-        [InlineData("abcdef", "xxxdef", 0.5d)]
-        [InlineData("abcdef", "axcxex", 0.5d)]
-        [InlineData("abc", "abcxxx", 1d)]
-        public void Should_Return_Correct_Fitness(string target, string genes, double fitness)
-        {
-            var sut = new Individual(genes.ToCharArray());
-            sut.CalculateFitness(target.ToCharArray());
-
-            Assert.Equal(fitness, sut.Fitness);
         }
     }
 }
