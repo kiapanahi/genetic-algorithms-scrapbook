@@ -7,6 +7,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4AEDBF15-C8A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakespeareAndMonkey", "src\shakespeare-and-monkey\ShakespeareAndMonkey.csproj", "{9F74C799-D4FB-4FAB-991D-258B0AAAB13F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4275E4B2-73B7-4421-9230-5690AB2AD71F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakespeareAndMonkey.Tests", "tests\shakespeare-and-monkey-tests\ShakespeareAndMonkey.Tests.csproj", "{D6147B02-22E4-4D55-961D-90767B31C1A1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,8 +36,21 @@ Global
 		{9F74C799-D4FB-4FAB-991D-258B0AAAB13F}.Release|x64.Build.0 = Release|Any CPU
 		{9F74C799-D4FB-4FAB-991D-258B0AAAB13F}.Release|x86.ActiveCfg = Release|Any CPU
 		{9F74C799-D4FB-4FAB-991D-258B0AAAB13F}.Release|x86.Build.0 = Release|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Debug|x64.Build.0 = Debug|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Debug|x86.Build.0 = Debug|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Release|x64.ActiveCfg = Release|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Release|x64.Build.0 = Release|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Release|x86.ActiveCfg = Release|Any CPU
+		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9F74C799-D4FB-4FAB-991D-258B0AAAB13F} = {4AEDBF15-C8AD-43B5-BE7F-2453D48FB376}
+		{D6147B02-22E4-4D55-961D-90767B31C1A1} = {4275E4B2-73B7-4421-9230-5690AB2AD71F}
 	EndGlobalSection
 EndGlobal
