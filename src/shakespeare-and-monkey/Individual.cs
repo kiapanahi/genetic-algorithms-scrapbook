@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace ShakespeareAndMonkey
 {
@@ -13,26 +11,43 @@ namespace ShakespeareAndMonkey
      */
     public class Individual
     {
-        public char[] GenomePool { get; private set; }
-        public double Fitness { get; private set; }
-
         private const string Characters = "abcdefghijklmnopqrstuvwxyz1234567890 .@_+";
 
         public Individual(int poolSize, Random random)
         {
-            GenomePool = new char[poolSize];
+            Genes = new char[poolSize];
 
             for (var i = 0; i < poolSize; i++)
             {
                 var c = Characters[random.Next(Characters.Length - 1)];
-                GenomePool[i] = c;
+                Genes[i] = c;
             }
-
         }
 
-        public double CalculateFitness()
+        public Individual(char[] genes)
         {
-            throw new NotImplementedException();
+            Genes = genes;
+        }
+
+        public char[] Genes { get; }
+        public double Fitness { get; private set; }
+
+        public double CalculateFitness(char[] target)
+        {
+            if (target.Length > Genes.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(target),
+                    "target's length must be less than or equal to DNA's gene pool size");
+            }
+
+            var score = 0;
+            for (var i = 0; i < target.Length; i++)
+            {
+                score += Genes[i] == target[i] ? 1 : 0;
+            }
+
+            Fitness = (double) score / target.Length;
+            return Fitness;
         }
 
         public Individual CrossOver(Individual other)
@@ -40,6 +55,9 @@ namespace ShakespeareAndMonkey
             throw new NotImplementedException();
         }
 
+        public override string ToString()
+        {
+            return $"fitness: {Fitness:P} - phrase: {new string(Genes)}";
+        }
     }
-
 }
