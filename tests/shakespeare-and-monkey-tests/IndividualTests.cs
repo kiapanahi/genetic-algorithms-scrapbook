@@ -61,6 +61,19 @@ namespace ShakespeareAndMonkey.Tests
             Assert.Equal(NumberOfGenomes, sut.Genes.Length);
         }
 
+
+        [SuppressMessage("ReSharper", "StringLiteralTypo")]
+        [Fact]
+        public void Should_Return_Child_From_Two_Parents()
+        {
+            var p1 = new Individual("abcdefg".ToCharArray(), Random);
+            var p2 = new Individual("tuvwxyz".ToCharArray(), Random);
+
+            var child = p1.CrossOver(p2);
+
+            Assert.NotNull(child);
+        }
+
         [Fact]
         public void Should_Return_Correct_String_Representation()
         {
