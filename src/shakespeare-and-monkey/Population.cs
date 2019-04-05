@@ -12,23 +12,23 @@ namespace ShakespeareAndMonkey
      */
     public class Population
     {
-        private readonly IEnumerable<Individual> _items;
+        private readonly IEnumerable<Individual> _population;
 
         private int generationCount = 0;
 
         public Population(int populationCount,int stringLength, Random random)
         {
-            _items = GenerateRandomPopulation(populationCount, stringLength, random);
+            _population = GenerateRandomPopulation(populationCount, stringLength, random);
         }
 
-        public double CalculatePopulationFitness()
+        public double CalculatePopulationFitness(string target)
         {
             var fitnessSum = 0d;
-            foreach (var item in _items)
+            foreach (var item in _population)
             {
-                fitnessSum += item.CalculateFitness();
+                fitnessSum += item.CalculateFitness(target.ToCharArray());
             }
-            var normalizedFitness = fitnessSum / _items.Count();
+            var normalizedFitness = fitnessSum / _population.Count();
 
             return normalizedFitness;
         }

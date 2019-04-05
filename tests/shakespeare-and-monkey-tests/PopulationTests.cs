@@ -19,7 +19,7 @@ namespace ShakespeareAndMonkey.Tests
             Assert.True(population.Count == 200);
             foreach (var item in population)
             {
-                Assert.True(item.GenomePool.Length == 20);
+                Assert.True(item.Genes.Length == 20);
             }
         }
     }
