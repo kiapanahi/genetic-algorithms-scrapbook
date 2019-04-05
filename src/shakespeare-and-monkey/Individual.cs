@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ShakespeareAndMonkey
 {
@@ -14,12 +16,21 @@ namespace ShakespeareAndMonkey
         public char[] GenomePool { get; private set; }
         public double Fitness { get; private set; }
 
-        public Individual(int characterCount)
+        private const string Characters = "abcdefghijklmnopqrstuvwxyz1234567890 .@_+";
+
+        public Individual(int poolSize, Random random)
         {
-            GenomePool = new char[characterCount];
+            GenomePool = new char[poolSize];
+
+            for (var i = 0; i < poolSize; i++)
+            {
+                var c = Characters[random.Next(Characters.Length - 1)];
+                GenomePool[i] = c;
+            }
+
         }
 
-        public void CalculateFitness()
+        public double CalculateFitness()
         {
             throw new NotImplementedException();
         }
