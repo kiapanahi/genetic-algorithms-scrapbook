@@ -1,15 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4AEDBF15-C8AD-43B5-BE7F-2453D48FB376}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakespeareAndMonkey", "src\shakespeare-and-monkey\ShakespeareAndMonkey.csproj", "{9F74C799-D4FB-4FAB-991D-258B0AAAB13F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShakespeareAndMonkey", "src\shakespeare-and-monkey\ShakespeareAndMonkey.csproj", "{9F74C799-D4FB-4FAB-991D-258B0AAAB13F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{4275E4B2-73B7-4421-9230-5690AB2AD71F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShakespeareAndMonkey.Tests", "tests\shakespeare-and-monkey-tests\ShakespeareAndMonkey.Tests.csproj", "{D6147B02-22E4-4D55-961D-90767B31C1A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShakespeareAndMonkey.Tests", "tests\shakespeare-and-monkey-tests\ShakespeareAndMonkey.Tests.csproj", "{D6147B02-22E4-4D55-961D-90767B31C1A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{51EE5DC8-59A3-4F50-B670-5180F45C5B8E}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		global.json = global.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,9 +25,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9F74C799-D4FB-4FAB-991D-258B0AAAB13F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -49,8 +52,14 @@ Global
 		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Release|x86.ActiveCfg = Release|Any CPU
 		{D6147B02-22E4-4D55-961D-90767B31C1A1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9F74C799-D4FB-4FAB-991D-258B0AAAB13F} = {4AEDBF15-C8AD-43B5-BE7F-2453D48FB376}
 		{D6147B02-22E4-4D55-961D-90767B31C1A1} = {4275E4B2-73B7-4421-9230-5690AB2AD71F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0FC48A24-F793-47C2-8DF0-72A026E73031}
 	EndGlobalSection
 EndGlobal
