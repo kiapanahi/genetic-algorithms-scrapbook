@@ -10,11 +10,4 @@ namespace ShakespeareAndMonkey
 
         }
     }
-
-    /*
-    population: a collection of individuals
-        * initialize them
-        * randomize them
-        ...
-     */
 }
