@@ -12,106 +12,60 @@ namespace ShakespeareAndMonkey
      */
     public class Population
     {
-        private readonly List<Individual> _population;
-
-        private int _generationCount;
-        private double _fitness;
-        private readonly string _target;
-        private readonly double _mutationRate;
-        private readonly List<Individual> _matingPool;
-        private readonly Random _random;
-        private Individual _fittest;
-
         public Population(int populationCount, string target, double mutationRate, Random random)
         {
-            _target = target;
-            _mutationRate = mutationRate;
-            _matingPool = new List<Individual>();
-            _random = random;
-            _fittest = new Individual(0, random);
+            Target = target;
+            MutationRate = mutationRate;
+            MatingPool = new List<Individual>();
+            Random = random;
+            Fittest = new Individual(0, random);
 
-
-            _population = GenerateRandomPopulation(populationCount, _target.Length, _random).ToList();
-
-            foreach (var individual in _population)
-            {
-                individual.CalculateFitness(_target.ToCharArray());
-            }
+            Initialize(populationCount);
         }
 
-        public void CalculateFitness(string target)
-        {
-            var fitnessSum = 0d;
-            foreach (var item in _population)
-            {
-                var individualFitness = item.CalculateFitness(target.ToCharArray());
+        public List<Individual> Members { get; private set; }
 
-                if (individualFitness > _fittest.Fitness)
+        public int GenerationCount { get; set; }
+        public string Target { get; }
+        public double MutationRate { get; }
+        public List<Individual> MatingPool { get; }
+        public Random Random { get; }
+        public Individual Fittest { get; set; }
+
+        public double Fitness
+        {
+            get
+            {
+                var fitnessSum = 0d;
+                foreach (var item in Members)
                 {
-                    _fittest = item;
+                    var individualFitness = item.CalculateFitness(Target.ToCharArray());
+
+                    if (individualFitness > Fittest.Fitness)
+                    {
+                        Fittest = item;
+                    }
+
+                    fitnessSum += individualFitness;
                 }
 
-                fitnessSum += individualFitness;
-            }
-            var normalizedFitness = fitnessSum / _population.Count;
+                var normalizedFitness = fitnessSum / Members.Count;
 
-            _fitness = normalizedFitness;
-        }
-
-        public void DoStuff()
-        {
-            while (Math.Abs(_fittest.Fitness - 1) > 0.001)
-            {
-                CalculateFitness(_target);
-                NaturalSelection();
-                GenerateNewPopulation();
-                Report();
-
+                return normalizedFitness;
             }
         }
 
-        private void Report()
+        private void Initialize(int populationCount)
         {
-            Console.WriteLine($"Generation: {_generationCount}\n" +
-                              $"fittest match: {_fittest}\n" +
-                              "=====================================");
+            Members = GenerateRandomPopulation(populationCount, Target.Length, Random).ToList();
         }
 
-        private void GenerateNewPopulation()
-        {
-            var size = _population.Count;
-            _population.Clear();
-
-            for (var i = 0; i < size; i++)
-            {
-                var father = _matingPool[_random.Next(_matingPool.Count - 1)];
-                var mother = _matingPool[_random.Next(_matingPool.Count - 1)];
-                var child = father.CrossOver(mother);
-                child.Mutate(_mutationRate);
-                _population.Add(child);
-            }
-            _generationCount++;
-        }
-
-        private void NaturalSelection()
-        {
-            _matingPool.Clear();
-
-            foreach (var individual in _population)
-            {
-                var recurrence = (int)(individual.Fitness * 100);
-                _matingPool.AddRange(Enumerable
-                    .Range(1, recurrence)
-                    .Select(s => individual));
-            }
-        }
-
-        public static IEnumerable<Individual> GenerateRandomPopulation(int populationSize, int genomePoolSize, Random random)
+        public static IEnumerable<Individual> GenerateRandomPopulation(int populationSize, int genomePoolSize,
+            Random random)
         {
             return Enumerable
                 .Range(1, populationSize)
                 .Select(c => new Individual(genomePoolSize, random));
         }
-
     }
 }
