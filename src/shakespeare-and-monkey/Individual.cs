@@ -74,5 +74,16 @@ namespace ShakespeareAndMonkey
         {
             return $"fitness: {Fitness:P} - phrase: {new string(Genes)}";
         }
+
+        public void Mutate(double mutationRate)
+        {
+            for (var i = 0; i < Genes.Length; i++)
+            {
+                if (_random.NextDouble() < mutationRate)
+                {
+                    Genes[i] = Characters[_random.Next(Characters.Length - 1)];
+                }
+            }
+        }
     }
 }
