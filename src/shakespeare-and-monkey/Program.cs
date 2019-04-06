@@ -2,12 +2,18 @@
 
 namespace ShakespeareAndMonkey
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main()
         {
-            Console.WriteLine("This program tries to find the phrase: \"kia panahi rad\" using genetic algorithms.");
+            Console.WriteLine("Enter the phrase you wanna do:");
+            Console.Write("> ");
+            var phrase = Console.ReadLine();
+            var population = new Population(1000, phrase, 0.01, new Random());
+            population.DoStuff();
 
+            Console.WriteLine("Done");
+            Console.ReadLine();
         }
     }
 }
