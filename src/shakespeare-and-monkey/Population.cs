@@ -31,30 +31,7 @@ namespace ShakespeareAndMonkey
         public List<Individual> MatingPool { get; }
         public Random Random { get; }
         public Individual Fittest { get; set; }
-
-        public double Fitness
-        {
-            get
-            {
-                var fitnessSum = 0d;
-                foreach (var item in Members)
-                {
-                    var individualFitness = item.CalculateFitness(Target.ToCharArray());
-
-                    if (individualFitness > Fittest.Fitness)
-                    {
-                        Fittest = item;
-                    }
-
-                    fitnessSum += individualFitness;
-                }
-
-                var normalizedFitness = fitnessSum / Members.Count;
-
-                return normalizedFitness;
-            }
-        }
-
+        
         private void Initialize(int populationCount)
         {
             Members = GenerateRandomPopulation(populationCount, Target.Length, Random).ToList();
